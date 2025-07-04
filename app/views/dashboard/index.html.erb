@@ -23,7 +23,6 @@
   </div>
 </div>
 
-<!-- Files Grid -->
 <!-- File List -->
 <div class="container">
   <% if @file_uploads.any? %>
@@ -71,12 +70,11 @@
   <% end %>
 </div>
 
-
 <!-- Upload Modal -->
 <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <%= form_with model: FileUpload.new, url: file_uploads_path, local: true, html: { multipart: true } do |f| %>
+      <%= form_with model: FileUpload.new, url: file_uploads_path, html: { multipart: true, data: { direct_upload: true } }, local: true do |f| %>
         <div class="modal-header">
           <h5 class="modal-title" id="uploadModalLabel">Upload a New File</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -97,7 +95,11 @@
 
           <div class="form-group">
             <%= f.label :file, class: "font-weight-bold" %>
-            <%= f.file_field :file, class: "form-control-file", required: true %>
+            <%= f.file_field :file, class: "form-control-file", direct_upload: true, required: true %>
+          </div>
+
+          <div class="progress d-none" id="upload-progress">
+            <div class="progress-bar" id="upload-progress-bar" role="progressbar" style="width: 0%">0%</div>
           </div>
         </div>
 
