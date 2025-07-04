@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   root "dashboard#index"
   resources :file_uploads, only: [:create,:destroy]
 
+  get "/s/:short_token", to: "public_files#show", as: :share_file
+
+  
 end

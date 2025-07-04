@@ -59,14 +59,14 @@ Rails.application.configure do
 
   # Set host to be used by links generated in mailer templates.
 
-  config.action_mailer.default_url_options = { host: "foxy-drive.biharchunav.com" }
+  config.action_mailer.default_url_options = { host: "foxy-drive.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.hostinger.com',
     port: 465,
-    domain: 'biharchunav.com',
-    user_name: 'info@biharchunav.com',
-    password: 'Jeq5gsL6/K&D@LS',
+    domain: 'foxy-drive.com',
+    user_name: 'info@foxy-drive.com',
+    password: 'password',
     authentication: :login,
     ssl: true,
     enable_starttls_auto: true

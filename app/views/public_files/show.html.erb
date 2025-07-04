@@ -1,0 +1,64 @@
+<div class="container py-5 d-flex justify-content-center align-items-center">
+  <div class="card shadow-lg w-100" style="max-width: 720px;">
+    <div class="card-header bg-white border-0 text-center">
+      <h2 class="text-primary mb-0">
+        <i class="fa fa-cloud-download-alt mr-2"></i>
+        File Shared via Foxy Drive
+      </h2>
+    </div>
+    <div class="card-body">
+      <div class="text-center mb-4">
+        <i class="fa fa-file-alt fa-4x text-secondary mb-3"></i>
+        <h4 class="text-dark"><%= @file.title %></h4>
+        <% if @file.description.present? %>
+          <p class="text-muted small"><%= @file.description %></p>
+        <% end %>
+      </div>
+
+      <div class="bg-light p-3 rounded mb-4">
+        <table class="table table-borderless table-sm mb-0">
+          <tbody>
+            <tr>
+              <th class="text-muted">File Type</th>
+              <td><%= file_type_label(@file.file_type) %></td>
+            </tr>
+            <tr>
+              <th class="text-muted">File Size</th>
+              <td><%= number_to_human_size(@file.file.byte_size) %></td>
+            </tr>
+            <tr>
+              <th class="text-muted">Uploaded</th>
+              <td><%= time_ago_in_words(@file.created_at) %> ago</td>
+            </tr>
+            <tr>
+              <th class="text-muted">Shared By</th>
+              <td><%= @file.user.email %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-center">
+        <%= link_to "Download File", rails_blob_url(@file.file, disposition: "attachment"),
+                    class: "btn btn-lg btn-primary px-5" %>
+      </div>
+    </div>
+    <div class="card-footer text-center text-muted small">
+      &copy; <%= Time.current.year %> Foxy Drive
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-header h2 i {
+    vertical-align: middle;
+  }
+
+  .fa-file-alt {
+    opacity: 0.8;
+  }
+
+  .table th {
+    width: 120px;
+  }
+</style>

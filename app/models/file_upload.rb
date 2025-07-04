@@ -10,7 +10,11 @@ class FileUpload < ApplicationRecord
 
   private
 
+  # Generates a unique short token for the file upload
   def generate_short_token
-    self.short_token = SecureRandom.alphanumeric(8)
+    loop do
+      self.short_token = SecureRandom.alphanumeric(8)
+      break unless FileUpload.exists?(short_token: short_token)
+    end
   end
 end

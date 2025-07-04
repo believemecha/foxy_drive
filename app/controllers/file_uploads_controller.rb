@@ -11,6 +11,12 @@ class FileUploadsController < ApplicationController
         redirect_to root_path, alert: @file_upload.errors.full_messages.to_sentence
       end
     end
+
+    def destroy
+        file = current_user.file_uploads.find(params[:id])
+        file.destroy
+        redirect_to root_path, notice: "File deleted successfully."
+    end
   
     private
   
