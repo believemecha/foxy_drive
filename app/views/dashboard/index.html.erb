@@ -19,8 +19,22 @@
         <i class="fa fa-upload mr-1"></i>  + Upload File
       </button>
     </div>
+
+    <%= form_with url: root_path, method: :get, local: true, class: "form-inline" do |f| %>
+      <div class="input-group input-group-sm">
+        <%= f.text_field :q, value: params[:q], class: "form-control", placeholder: "Search files..." %>
+        <div class="input-group-append">
+          <%= f.submit "Search", class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
+    <% end %>    
   </div>
 </div>
+
+<% if params[:q].present? %>
+<p class="text-muted text-center">Showing results for "<strong><%= params[:q] %></strong>"</p>
+<% end %>
+
 
 <!-- File List -->
 <div class="container">
@@ -77,6 +91,11 @@
   <% else %>
     <div class="alert alert-info text-center">You haven't uploaded any files yet.</div>
   <% end %>
+
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @file_uploads %>
+  </div>
+
 </div>
 
 <!-- Upload Modal -->
