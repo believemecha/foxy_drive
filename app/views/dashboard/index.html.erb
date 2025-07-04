@@ -1,0 +1,43 @@
+<!-- app/views/dashboard/index.html.erb -->
+
+<!-- Header -->
+<nav class="navbar navbar-light bg-white shadow-sm px-4 mb-4 d-flex justify-content-between">
+  <h4 class="mb-0 text-primary">Foxy Drive</h4>
+  <div>
+    <span class="mr-3">Hey, <strong><%= current_user.email %></strong></span>
+    <%= button_to "Log out", destroy_user_session_path,
+                  method: :delete,
+                  class: "btn btn-outline-danger btn-sm",
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to log out?" } %>
+  </div>
+</nav>
+
+<!-- Action Bar -->
+<div class="container mb-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <h5 class="text-muted mb-0">My Drive</h5>
+    <div>
+      <%= link_to "New Folder", "#", class: "btn btn-outline-secondary btn-sm mr-2" %>
+      <%= link_to "Upload File", "#", class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+</div>
+
+<!-- Grid Layout -->
+<div class="container">
+  <div class="row">
+
+    <%# Example files/folders — Replace with real data later %>
+    <% 12.times do |i| %>
+      <div class="col-6 col-sm-4 col-md-3 mb-4">
+        <div class="card text-center shadow-sm border-0 h-100">
+          <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <i class="fa fa-folder fa-2x text-warning mb-2"></i>
+            <p class="card-text small text-truncate w-100 mb-0">Folder <%= i + 1 %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
