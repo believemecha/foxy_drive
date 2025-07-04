@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "dashboard#index"
+  resources :file_uploads, only: [:create,:destroy]
+
 end
